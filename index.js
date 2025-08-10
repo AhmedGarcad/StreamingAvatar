@@ -1,7 +1,36 @@
 'use strict';
 
 const heygen_API = {
-  apiKey: 'YourApiKey',
+  apiKey: ''use strict';
+
+// Load API config from api.json before anything else
+async function loadApiConfig() {
+  const response = await fetch('api.json');
+  if (!response.ok) {
+    alert('Could not load api.json. Please make sure it exists.');
+    throw new Error('api.json not found');
+  }
+  return response.json();
+}
+
+let heygen_API = { apiKey: '', serverUrl: '' };
+let apiKey = '';
+let SERVER_URL = '';
+
+(async () => {
+  heygen_API = await loadApiConfig();
+  apiKey = heygen_API.apiKey;
+  SERVER_URL = heygen_API.serverUrl;
+
+  if (apiKey === 'YourApiKey' || !SERVER_URL) {
+    alert('Please enter your API key and server URL in the api.json file');
+    return;
+  }
+
+  // Place all your code that depends on apiKey/SERVER_URL here.
+  // For example, move the rest of your script inside this block.
+  // ...existing code...
+})();',
   serverUrl: 'https://api.heygen.com',
 };
 
